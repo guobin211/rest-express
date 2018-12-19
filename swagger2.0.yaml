@@ -1,0 +1,27 @@
+swagger: 2.0
+info: 
+  version: 1.0.1
+  title: Rest Express Api
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users/{userId}:
+    get:
+      summary: Returns a user by ID.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: integer
+          minimum: 1
+          description: Parameter description in Markdown.
+      responses:
+        200:
+          description: OK
+
+
