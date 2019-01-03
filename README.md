@@ -48,8 +48,41 @@ express rest api with mongodb and mysql
         });
         next();
     });
+    
+    router.get('/:id', function (req, res, next) {
+        controller.findById(req.params.id).then(result => {
+            res.send(result);
+        }).catch(err => {
+            res.send(err);
+        });
+        next();
+    });
+    
+    router.post('/', function (req, res, next) {
+        res.send('respond with a resource');
+        next();
+    });
+    
+    router.put('/:id', function (req, res, next) {
+        if (!req.params.id) {
+            res.send('id 不能为空');
+        } else {
+            controller.findOneAndUpdate(req.params.id, req.body).then(result => {
+                res.send(req.body);
+            }).catch(err => res.send(err));
+        }
+        next();
+    });
+    
+    router.delete('/:id', function (req, res, next) {
+        res.send('respond with a resource');
+        next();
+    });
+    
     ```
+[![api-doc](https://github.com/guobin211/rest-express/blob/master/images/http.jpg)]()
 
+ 
 #### 文件结构
 
     client      -- pwa  前端项目
