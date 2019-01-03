@@ -1,11 +1,12 @@
 # rest-express
 
-#### 项目介绍
+### 项目介绍
 
-##### express rest api with mongodb and mysql
+### express rest api with mongodb and mysql
 
-![Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)
-##### 需要安装  APIDOC
+[![Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)](https://github.com/guobin211/rest-express)
+
+#### 安装APIDOC自动生成api文档
 
 [http://apidocjs.com/](http://apidocjs.com/)
 
