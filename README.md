@@ -3,14 +3,11 @@
 #### 项目介绍
 
 ##### express rest api with mongodb and mysql
-![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/mongodb.jpg)
 
-![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/logo.svg)
-
-![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/mysql.jpg)
+[Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)
 ##### 需要安装  APIDOC
 
-[http://apidocjs.com/][http://apidocjs.com/]
+[http://apidocjs.com/](http://apidocjs.com/)
 
     自动生成接口api文档
 
