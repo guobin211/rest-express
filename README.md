@@ -16,7 +16,7 @@ express rest api with mongodb and mysql
 
     替代方案可以使用swagger
 
-#### 接口写法
+#### REST接口写法
 
     ```
     /**
@@ -80,7 +80,8 @@ express rest api with mongodb and mysql
     });
     
     ```
-[![api-doc](https://github.com/guobin211/rest-express/blob/master/images/http.jpg)]()
+#### HTTP
+[![api-doc](https://github.com/guobin211/rest-express/blob/master/images/http.jpg)](https://github.com/guobin211/rest-express)
 
  
 #### 文件结构
