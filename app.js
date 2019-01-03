@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-const fileMul  = require('multer');
+const fileMul = require('multer');
 const upload = fileMul({ dest: 'uploads/'});
+const fs = require('fs');
 
-const { connect, initSchemas } = require('./service/database/mongo_client');
+const compression = require('compression');
+const {connect, initSchemas} = require('./service/database/mongo_client');
 
 /**
- * 链接mongoDB数据库
+ * async 链接 mongoDB数据库
  * 加载数据模型
  */
 (async () => {
@@ -49,12 +51,21 @@ const usersRouter = require('./routes/users');
  */
 const app = express();
 
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        // 过滤掉了请求头包含'x-no-compression'
+        return false
+    }
+    return compression.filter(req, res)
+}
+
 /**
  * app mid
  */
+app.use(compression({filter: shouldCompress}));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
@@ -64,7 +75,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, Authorization, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
@@ -74,7 +85,7 @@ app.all('*', function(req, res, next) {
 /**
  * 处理upload file
  */
-app.post('/upload', upload.array('photos', 6),(req, res, next) => {
+app.post('/upload', upload.array('photos', 6), (req, res, next) => {
     console.log(req.files);
     // [ { fieldname: 'photos',
     //     originalname: 'Java_manual.pdf',
@@ -84,12 +95,27 @@ app.post('/upload', upload.array('photos', 6),(req, res, next) => {
     //     filename: 'a0c5afef36727910c3bd68bf38400566',
     //     path: 'uploads/a0c5afef36727910c3bd68bf38400566',
     //     size: 1163395 } ]
-    console.log(req.body);
-    res.send('ok');
+    changeFileName(req.files);
+    res.json({code: 200, result: '上传成功！'});
+    // res.redirect('http://localhost:3000/');
     next();
 });
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+
+/**
+ * 修改文件名
+ * @param fileList
+ */
+function changeFileName(fileList) {
+    for (let i = 0; i <fileList.length ; i++) {
+        fs.rename(fileList[i].path, 'uploads/' + fileList[i].originalname, (err) => {
+            if (err) {
+                throw err;
+            }
+        })
+    }
+}
 
 module.exports = app;
