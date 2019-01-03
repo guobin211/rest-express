@@ -3,8 +3,12 @@
 #### 项目介绍
 
 ##### express rest api with mongodb and mysql
-![image](https://github.com/guobin211/rest-express/images/mongodb.jpg)
-##### 需要安装
+![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/mongodb.jpg)
+
+![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/logo.svg)
+
+![MONGODB](https://github.com/guobin211/rest-express/blob/master/images/mysql.jpg)
+##### 需要安装  APIDOC
 
 [http://apidocjs.com/][http://apidocjs.com/]
 
