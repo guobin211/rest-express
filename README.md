@@ -4,7 +4,7 @@
 
 ##### express rest api with mongodb and mysql
 
-[Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)
+![Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)
 ##### 需要安装  APIDOC
 
 [http://apidocjs.com/](http://apidocjs.com/)
