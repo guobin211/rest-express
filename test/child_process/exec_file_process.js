@@ -7,7 +7,9 @@ const execFile = util.promisify(require('child_process').execFile);
  */
 async function getVersion() {
     const { stdout } = await execFile('node', ['--version']);
-    console.log(stdout);
+    return stdout;
 }
 
-getVersion();
+getVersion().then(res => {
+    console.log(res);
+});
