@@ -2,21 +2,19 @@
 
 ### 项目介绍
 
-### express rest api with mongodb and mysql
+express rest api with mongodb and mysql
 
 [![Rest-Express](https://github.com/guobin211/rest-express/blob/master/images/github.jpg)](https://github.com/guobin211/rest-express)
 
 #### 安装APIDOC自动生成api文档
 
-[http://apidocjs.com/](http://apidocjs.com/)
+[![api-doc](https://github.com/guobin211/rest-express/blob/master/images/api.png)](http://apidocjs.com/)
 
     自动生成接口api文档
 
     apidoc -i routes/ -o public/apidoc/
-    
-    替代方案 使用swagger
-    
-    swagger2.0.yaml
+
+    替代方案可以使用swagger
 
 #### 接口写法
 
