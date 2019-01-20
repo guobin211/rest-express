@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
-
+const jwt = require('jsonwebtoken');
+const muter = require('multer');
+const upload = muter();
 const controller = require('../service/controllers/users.controller');
-
+/**
+ * 检验token的middleware
+ */
+const checkAuth = require('../middleware/check-auth');
 /**
  * @api {get} /api/users 用户列表
  * @apiDescription 用户列表
@@ -42,12 +47,39 @@ router.get('/:id', function (req, res, next) {
     next();
 });
 
-router.post('/', function (req, res, next) {
-    res.send('respond with a resource');
+/**
+ * 读取form-data
+ */
+router.post('/', upload.array(), function (req, res, next) {
+    console.log(req.body);
+    res.send({
+        header: "req.header",
+        data: req.body
+    });
     next();
 });
 
-router.put('/:id', function (req, res, next) {
+/**
+ * 登录界面生成token
+ */
+router.post('/login', function (req, res, next) {
+    const token = jwt.sign({
+            email: 123456789,
+            userId: 123456,
+        },
+        process.env.JWT_KEY,
+        {
+            expiresIn: "1h"
+        }
+    );
+    res.json({
+        email: 123456789,
+        token: token,
+    });
+    next();
+});
+
+router.put('/:id',upload.array(), checkAuth, function (req, res, next) {
     if (!req.params.id) {
         res.send('id 不能为空');
     } else {

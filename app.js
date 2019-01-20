@@ -7,7 +7,7 @@ const sassMiddleware = require('node-sass-middleware');
 const fileMul = require('multer');
 const upload = fileMul({ dest: 'uploads/'});
 const fs = require('fs');
-
+const bodyParser = require('body-parser');
 const compression = require('compression');
 const {connect, initSchemas} = require('./service/database/mongo_client');
 
@@ -66,6 +66,8 @@ app.use(compression({filter: shouldCompress}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 app.use(cookieParser());
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
