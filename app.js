@@ -81,6 +81,10 @@ app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, Authorization, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    // 允许前端读取header字段
+    res.header("Access-Control-Expose-Headers", "File");
+    res.header("Access-Control-Allow-Headers", "File");
+    res.header("File", "admin888");
     next();
 });
 
