@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -53,7 +54,7 @@ router.get('/:id', function (req, res, next) {
 router.post('/', upload.array(), function (req, res, next) {
     console.log(req.body);
     res.send({
-        header: "req.header",
+        header: 'req.header',
         data: req.body
     });
     next();
@@ -64,12 +65,12 @@ router.post('/', upload.array(), function (req, res, next) {
  */
 router.post('/login', function (req, res, next) {
     const token = jwt.sign({
-            email: 123456789,
-            userId: 123456,
-        },
+        email: 123456789,
+        userId: 123456,
+    },
         process.env.JWT_KEY,
         {
-            expiresIn: "1h"
+            expiresIn: '1h'
         }
     );
     res.json({
@@ -79,7 +80,7 @@ router.post('/login', function (req, res, next) {
     next();
 });
 
-router.put('/:id',upload.array(), checkAuth, function (req, res, next) {
+router.put('/:id', upload.array(), checkAuth, function (req, res, next) {
     if (!req.params.id) {
         res.send('id 不能为空');
     } else {
